@@ -1,0 +1,1 @@
+ALTER TABLE Autobuska_stanica ADD constraint autobuska_stanica_pk PRIMARY KEY (idStanice)

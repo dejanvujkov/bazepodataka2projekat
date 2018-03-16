@@ -1,0 +1,1 @@
+ALTER TABLE Vozac ADD constraint vozac_pk PRIMARY KEY (jmbg)

@@ -1,0 +1,1 @@
+ALTER TABLE Prodavac ADD constraint prodavac_pk PRIMARY KEY (jmbg)

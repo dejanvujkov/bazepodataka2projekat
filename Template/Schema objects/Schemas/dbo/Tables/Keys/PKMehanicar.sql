@@ -1,0 +1,1 @@
+ALTER TABLE Mehanicar ADD constraint mehanicar_pk PRIMARY KEY (jmbg)

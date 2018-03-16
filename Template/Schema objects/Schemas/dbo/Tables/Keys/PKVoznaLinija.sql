@@ -1,0 +1,1 @@
+ALTER TABLE Vozna_linija ADD constraint vozna_linija_pk PRIMARY KEY (idLinije)

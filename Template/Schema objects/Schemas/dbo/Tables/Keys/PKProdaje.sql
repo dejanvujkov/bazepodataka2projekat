@@ -1,0 +1,1 @@
+ALTER TABLE prodaje ADD constraint prodaje_pk PRIMARY KEY (Prodavac_jmbg, Karta_idKarte)

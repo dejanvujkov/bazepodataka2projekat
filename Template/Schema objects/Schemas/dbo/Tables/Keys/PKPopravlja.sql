@@ -1,0 +1,1 @@
+ALTER TABLE popravlja ADD constraint popravlja_pk PRIMARY KEY (Mehanicar_jmbg, Poseduje_idStanice, Poseduje_brTablica)

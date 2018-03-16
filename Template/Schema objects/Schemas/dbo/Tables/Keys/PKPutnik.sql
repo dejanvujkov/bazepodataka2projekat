@@ -1,0 +1,1 @@
+ALTER TABLE Putnik ADD constraint putnik_pk PRIMARY KEY (idPutnika)

@@ -1,0 +1,1 @@
+ALTER TABLE Karta ADD constraint karta_pk PRIMARY KEY (idKarte)

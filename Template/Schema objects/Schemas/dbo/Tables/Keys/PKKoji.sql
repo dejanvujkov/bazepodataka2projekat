@@ -1,0 +1,1 @@
+ALTER TABLE koji ADD constraint koji_pk PRIMARY KEY (Vozna_linija_idLinije, Poseduje_idStanice, Poseduje_brTablica)
