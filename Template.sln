@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Template", "Template\Template.sqlproj", "{7FFA0B0C-223A-4F5B-83A4-BBB9FFEB130F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseFirst", "DatabaseFirst\DatabaseFirst.csproj", "{5B751500-FC1E-46F5-ACD9-0A83032B8865}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csproj", "{E620D89D-0FAC-4F4C-B935-7A5CC6FA418E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,10 @@ Global
 		{7FFA0B0C-223A-4F5B-83A4-BBB9FFEB130F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FFA0B0C-223A-4F5B-83A4-BBB9FFEB130F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7FFA0B0C-223A-4F5B-83A4-BBB9FFEB130F}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{5B751500-FC1E-46F5-ACD9-0A83032B8865}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B751500-FC1E-46F5-ACD9-0A83032B8865}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5B751500-FC1E-46F5-ACD9-0A83032B8865}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5B751500-FC1E-46F5-ACD9-0A83032B8865}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E620D89D-0FAC-4F4C-B935-7A5CC6FA418E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E620D89D-0FAC-4F4C-B935-7A5CC6FA418E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E620D89D-0FAC-4F4C-B935-7A5CC6FA418E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E620D89D-0FAC-4F4C-B935-7A5CC6FA418E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
