@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2b36b0617f40433eb4d7706cb099a6aa" Name="Diagram1">
+        <EntityTypeShape EntityType="AutobuskaStanicaModel.autobu" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutobuskaStanicaModel.autobuska_stanica" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutobuskaStanicaModel.karta" Width="1.5" PointX="12" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutobuskaStanicaModel.mehanicar" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutobuskaStanicaModel.poseduje" Width="1.5" PointX="7.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutobuskaStanicaModel.prodavac" Width="1.5" PointX="14.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutobuskaStanicaModel.putnik" Width="1.5" PointX="14.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutobuskaStanicaModel.radnik" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutobuskaStanicaModel.tip_karte" Width="1.5" PointX="9.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutobuskaStanicaModel.vozac" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutobuskaStanicaModel.vozna_linija" Width="1.5" PointX="9.75" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="AutobuskaStanicaModel.poseduje_autobus_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="AutobuskaStanicaModel.poseduje_autobuska_stanica_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="AutobuskaStanicaModel.radnik_autobuska_stanica_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="AutobuskaStanicaModel.karta_tip_karte_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="AutobuskaStanicaModel.karta_vozna_linija_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="AutobuskaStanicaModel.putnik_karta_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="AutobuskaStanicaModel.mehanicar_radnik_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="AutobuskaStanicaModel.prodavac_radnik_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="AutobuskaStanicaModel.vozac_radnik_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="AutobuskaStanicaModel.koji" ManuallyRouted="false" />
+        <AssociationConnector Association="AutobuskaStanicaModel.popravlja" ManuallyRouted="false" />
+        <AssociationConnector Association="AutobuskaStanicaModel.prodaje" ManuallyRouted="false" />
+        <AssociationConnector Association="AutobuskaStanicaModel.vozi" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
