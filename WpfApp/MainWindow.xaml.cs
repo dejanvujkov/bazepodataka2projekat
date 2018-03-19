@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DatabaseAccess;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,9 @@ namespace WpfApp
         public MainWindow()
         {
             InitializeComponent();
+            var add = new AddAccess();
+
+            add.AddStanica(1, "nzm", "NS", "bulevarNeki");
         }
     }
 }
