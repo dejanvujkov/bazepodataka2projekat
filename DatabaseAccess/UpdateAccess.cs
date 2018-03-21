@@ -33,7 +33,7 @@ namespace DatabaseAccess
                 {
                     autobus.marka = marka;
                 }
-
+                
                 db.Entry(autobus).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
@@ -127,7 +127,7 @@ namespace DatabaseAccess
             }
         }
 
-        public void UpdatePutnik(string idPutnika, string ime, string idKarte)
+        public void UpdatePutnik(int idPutnika, string ime, string idKarte)
         {
             var putnik = get.GetPutnikById(idPutnika);
 
@@ -209,6 +209,7 @@ namespace DatabaseAccess
                 {
                     vozac.brojvoznihlinija = broj;
                 }
+                
 
                 db.Entry(vozac).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
