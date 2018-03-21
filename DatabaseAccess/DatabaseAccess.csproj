@@ -36,11 +36,17 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="MoreLinq, Version=2.10.21623.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\packages\morelinq.2.10.0\lib\net40\MoreLinq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,6 +62,7 @@
     <Compile Include="autobuska_stanica.cs">
       <DependentUpon>StanicaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DeleteAccess.cs" />
     <Compile Include="GetAccess.cs" />
     <Compile Include="karta.cs">
       <DependentUpon>StanicaModel.tt</DependentUpon>
@@ -94,6 +101,7 @@
     <Compile Include="tip_karte.cs">
       <DependentUpon>StanicaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="UpdateAccess.cs" />
     <Compile Include="vozac.cs">
       <DependentUpon>StanicaModel.tt</DependentUpon>
     </Compile>
