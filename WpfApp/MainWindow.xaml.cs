@@ -84,8 +84,16 @@ namespace WpfApp
                     var stanica = (autobuska_stanica)DataGrid.SelectedItem;
                     if (get.GetAutobuska_StanicaById(stanica.idstanice) == null)
                     {
-                        add.AddStanica(stanica.idstanice, stanica.ime, stanica.grad, stanica.ulica);
-                        MessageBox.Show("Dodato!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
+                        try
+                        {
+                            add.AddStanica(stanica.idstanice, stanica.ime, stanica.grad, stanica.ulica);
+                            MessageBox.Show("Dodato!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        catch (Exception)
+                        {
+
+                            MessageBox.Show("Niste uneli dobre podatke", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                     else
                     {
@@ -96,8 +104,15 @@ namespace WpfApp
                     var autobus = (autobu)DataGrid.SelectedItem;
                     if (get.GetAutobusById(autobus.brtablica) == null)
                     {
-                        add.AddAutobus(autobus.brtablica, autobus.brojmesta, autobus.ispravan, autobus.marka);
-                        MessageBox.Show("Dodato!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
+                        try
+                        {
+                            add.AddAutobus(autobus.brtablica, autobus.brojmesta, autobus.ispravan, autobus.marka);
+                            MessageBox.Show("Dodato!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Niste uneli dobre podatke!", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                     else
                     {
@@ -121,8 +136,15 @@ namespace WpfApp
                     var radnik = (radnik)DataGrid.SelectedItem;
                     if (get.GetRadnikByJmbg(radnik.jmbg) == null)
                     {
-                        add.AddRadnik(radnik.autobuska_stanica_idstanice, radnik.ime, radnik.prezime, radnik.jmbg);
-                        MessageBox.Show("Dodato!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
+                        try
+                        {
+                            add.AddRadnik(radnik.autobuska_stanica_idstanice, radnik.ime, radnik.prezime, radnik.jmbg);
+                            MessageBox.Show("Dodato!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Niste uneli dobre podatke", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                     else
                     {
@@ -133,8 +155,15 @@ namespace WpfApp
                     var prodavac = (prodavac)DataGrid.SelectedItem;
                     if (get.GetProdavacByJmbg(prodavac.jmbg) == null)
                     {
-                        add.AddProdavac(prodavac.jmbg, prodavac.brojsaltera);
-                        MessageBox.Show("Dodato!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
+                        try
+                        {
+                            add.AddProdavac(prodavac.jmbg, prodavac.brojsaltera);
+                            MessageBox.Show("Dodato!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Niste uneli dobre podatke", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                     else
                     {
@@ -143,8 +172,123 @@ namespace WpfApp
                     break;
                 default:
                     break;
-            } 
+            }
         }
+        #endregion
+
+        #region Remove
+        private void BRemove_Click(object sender, RoutedEventArgs e)
+        {
+            switch (CBTabela.SelectedItem)
+            {
+                case "Autobuska stanica":
+                    var stanica = (autobuska_stanica)DataGrid.SelectedItem;
+                    delete.DeleteAutobuskaStanica(stanica);
+                    break;
+                case "Autobus":
+                    try
+                    {
+                        var autobus = (autobu)DataGrid.SelectedItem;
+                        delete.DeleteAutobus(autobus);
+                        MessageBox.Show("Obrisano!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Greska prilikom brisanja autobusa", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    break;
+                case "Poseduje":
+                    var poseduje = (poseduje)DataGrid.SelectedItem;
+                    delete.DeletePoseduje(poseduje);
+                    break;
+                case "Radnik":
+                    try
+                    {
+                        var radnik = (radnik)DataGrid.SelectedItem;
+                        delete.DeleteRadnik(radnik);
+                        MessageBox.Show("Obrisano!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Doslo je do greske prilikom brisanja radnika", "Oops", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    break;
+                case "Prodavac":
+                    try
+                    {
+                        var prodavac = (prodavac)DataGrid.SelectedItem;
+                        delete.DeleteProdavac(get.GetRadnikByJmbg(prodavac.jmbg));
+                        MessageBox.Show("Obrisano!", "Oops", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Doslo je do greske prilikom brisanja prodavca", "Oops!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        #endregion
+
+        #region Update
+        private void BUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            switch (CBTabela.SelectedItem)
+            {
+                case "Autobuska stanica":
+                    var stanica = (autobuska_stanica)DataGrid.SelectedItem;
+                    update.UpdateAutobuskaStanica(stanica.idstanice, stanica.ime, stanica.grad, stanica.ulica);
+                    MessageBox.Show("Promenjeno!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
+                    break;
+
+                case "Autobus":
+                    try
+                    {
+                        var autobus = (autobu)DataGrid.SelectedItem;
+                        update.UpdateAutobus(autobus.brtablica, autobus.brojmesta, autobus.ispravan, autobus.marka);
+                        MessageBox.Show("Promenjeno!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Greska prilikom menjanja autobusa", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    break;
+
+                case "Poseduje":
+                    var poseduje = (poseduje)DataGrid.SelectedItem;
+                    //TODO
+                    break;
+
+                case "Radnik":
+                    try
+                    {
+                        var radnik = (radnik)DataGrid.SelectedItem;
+                        update.UpdateRadnik(radnik.jmbg, radnik.autobuska_stanica_idstanice, radnik.ime, radnik.prezime);
+                        MessageBox.Show("Promenjeno!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Doslo je do greske prilikom izmene radnika", "Oops", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
+                    break;
+                case "Prodavac":
+                    try
+                    {
+                        var prodavac = (prodavac)DataGrid.SelectedItem;
+                        update.UpdateProdavac(prodavac.jmbg, prodavac.brojsaltera);
+                        MessageBox.Show("Promenjeno!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Doslo je do greske prilikom izmene prodavca", "Oops!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        } 
         #endregion
     }
 }

@@ -16,31 +16,41 @@ namespace DatabaseAccess
         }
 
         #region DeleteStanica
-        public void DeleteAutobuskaStanica(int id)
+        public void DeleteAutobuskaStanica(autobuska_stanica stanica)
         {
             using (var db = new AutobuskaStanicaEntities())
             {
                 var svePoseduje = get.GetAllPoseduje();
                 foreach (var v in svePoseduje)
                 {
-                    if (v.autobuska_stanica_idstanice == id)
+                    if (v.autobuska_stanica_idstanice == stanica.idstanice)
                     {
+                        db.posedujes.Attach(v);
                         db.posedujes.Remove(v);
                     }
                 }
 
-                db.autobuska_stanica.Remove(get.GetAutobuska_StanicaById(id));
+                var sviRadnici = get.GetAllRadnik();
+                foreach(var radnik in sviRadnici)
+                {
+                    if (radnik.autobuska_stanica_idstanice == stanica.idstanice)
+                    {
+                        DeleteRadnik(radnik);
+                    }
+                }
+                db.autobuska_stanica.Attach(stanica);
+                db.autobuska_stanica.Remove(stanica);
                 db.SaveChanges();
             }
         } 
         #endregion
 
         #region DeleteAutobus
-        public void DeleteAutobus(string brojTablica)
+        public void DeleteAutobus(autobu autobus)
         {
             using (var db = new AutobuskaStanicaEntities())
             {
-                var svePoseduje = get.GetAllPoseduje();
+                var svePoseduje = db.posedujes.ToList();
 
                 foreach (var poseduje in svePoseduje) //zbog gerunda -> autobus vise ne pripada stanici, te se sve njegove funkcije u istoj brisu
                 {
@@ -48,30 +58,33 @@ namespace DatabaseAccess
                     {
                         if (linija.posedujes == poseduje)
                         {
+                            db.vozna_linija.Attach(linija);
                             db.vozna_linija.Remove(linija);
                         }
                     }
-                    if (poseduje.autobus_brtablica.Equals(brojTablica))
+                    if (poseduje.autobus_brtablica.Equals(autobus.brtablica))
                     {
+                        db.posedujes.Attach(poseduje);
                         db.posedujes.Remove(poseduje);
                     }
 
                 }
 
-                db.autobus.Remove(get.GetAutobusById(brojTablica));
+                db.autobus.Attach(autobus);
+                db.autobus.Remove(autobus);
                 db.SaveChanges();
             }
         } 
         #endregion
 
         #region DeletePoseduje
-        public void DeletePoseduje(string brojTablica, int idStanice)
+        public void DeletePoseduje(poseduje poseduje)
         {
             using (var db = new AutobuskaStanicaEntities())
             {
-                var poseduje = get.GetPoseduje(brojTablica, idStanice);
 
-                foreach (var mehanicar in get.GetAllMehanicar())
+                var sviMehanicari = db.mehanicars.ToList();
+                foreach (var mehanicar in sviMehanicari)
                 {
                     if (mehanicar.posedujes.Contains(poseduje))
                     {
@@ -79,7 +92,8 @@ namespace DatabaseAccess
                     }
                 }
 
-                foreach (var linija in get.GetAllVoznaLinija())
+                var sveLinije = db.vozna_linija.ToList();
+                foreach (var linija in sveLinije)
                 {
                     if (linija.posedujes.Contains(poseduje))
                     {
@@ -87,7 +101,8 @@ namespace DatabaseAccess
                     }
                 }
 
-                foreach (var autobus in get.GetAllAutobus())
+                var sviAutobusi = db.autobus.ToList();
+                foreach (var autobus in sviAutobusi)
                 {
                     if (autobus.posedujes.Contains(poseduje))
                     {
@@ -95,15 +110,16 @@ namespace DatabaseAccess
                     }
                 }
 
-                foreach (var stanica in get.GetAllAutobuskaStanica())
+                var sveStanice = db.autobuska_stanica.ToList();
+                foreach (var stanica in sveStanice)
                 {
                     if (stanica.posedujes.Contains(poseduje))
                     {
                         stanica.posedujes.Remove(poseduje);
                     }
                 }
-
-
+                //TODO: Exception
+                db.posedujes.Attach(poseduje);
                 db.posedujes.Remove(poseduje);
                 db.SaveChanges();
             }
@@ -111,12 +127,13 @@ namespace DatabaseAccess
         #endregion
 
         #region DeleteMehanicar
-        public void DeleteMehanicar(string jmbg)
+        public void DeleteMehanicar(radnik radnik)
         {
-            var mehanicar = get.GetMehanicarByJmbg(jmbg);
+            var mehanicar = get.GetMehanicarByJmbg(radnik.jmbg);
 
             using (var db = new AutobuskaStanicaEntities())
             {
+                db.mehanicars.Attach(mehanicar);
                 db.mehanicars.Remove(mehanicar);
                 foreach (var poseduje in get.GetAllPoseduje())
                 {
@@ -125,8 +142,8 @@ namespace DatabaseAccess
                         poseduje.mehanicars.Remove(mehanicar);
                     }
                 }
-
-                db.radniks.Remove(get.GetRadnikByJmbg(jmbg));
+                db.radniks.Attach(radnik);
+                db.radniks.Remove(radnik);
 
                 db.SaveChanges();
             }
@@ -134,15 +151,17 @@ namespace DatabaseAccess
         #endregion
 
         #region DeleteProdavac
-        public void DeleteProdavac(string jmbg)
+        public void DeleteProdavac(radnik radnik)
         {
-            var prodavac = get.GetProdavacByJmbg(jmbg);
+            var prodavac = get.GetProdavacByJmbg(radnik.jmbg);
 
             using (var db = new AutobuskaStanicaEntities())
             {
+                db.prodavacs.Attach(prodavac);
                 db.prodavacs.Remove(prodavac);
 
-                db.radniks.Remove(get.GetRadnikByJmbg(jmbg));
+                db.radniks.Attach(radnik);
+                db.radniks.Remove(radnik);
 
                 db.SaveChanges();
             }
@@ -150,9 +169,9 @@ namespace DatabaseAccess
         #endregion
 
         #region DeleteVozac
-        public void DeleteVozac(string jmbg)
+        public void DeleteVozac(radnik radnik)
         {
-            var vozac = get.GetVozacByJmbg(jmbg);
+            var vozac = get.GetVozacByJmbg(radnik.jmbg);
 
             using (var db = new AutobuskaStanicaEntities())
             {
@@ -164,29 +183,54 @@ namespace DatabaseAccess
                         linije.vozacs.Remove(vozac);
                     }
                 }
+                db.vozacs.Attach(vozac);
                 db.vozacs.Remove(vozac); //obrisi ga iz tabele vozac
-                db.radniks.Remove(get.GetRadnikByJmbg(jmbg)); //obrisi ga iz tabele radnik
+                
+                db.radniks.Attach(radnik);
+                db.radniks.Remove(radnik); //obrisi ga iz tabele radnik
                 db.SaveChanges();
             }
         } 
         #endregion
 
         #region DeleteRadnik
-        public void DeleteRadnik(string jmbg)
+        public void DeleteRadnik(radnik radnik)
         {
-            if (get.GetAllMehanicar().Contains(get.GetMehanicarByJmbg(jmbg)))
+            using (var db = new AutobuskaStanicaEntities())
             {
-                DeleteMehanicar(jmbg);
+                var sviMehanicari = db.mehanicars.ToList();
+                var mehanicar = db.mehanicars.FirstOrDefault(m => m.jmbg.Equals(radnik.jmbg));
+
+                if (sviMehanicari.Contains(mehanicar))
+                {
+                    DeleteMehanicar(radnik);
+                    return;
+                }
+
+                var sviProdavci = db.prodavacs.ToList();
+                var prodavac = db.prodavacs.FirstOrDefault(m => m.jmbg.Equals(radnik.jmbg));
+
+                if (sviProdavci.Contains(prodavac))
+                {
+                    DeleteProdavac(radnik);
+                    return;
+                }
+
+                var sviVozaci = db.vozacs.ToList();
+                var vozac = db.vozacs.FirstOrDefault(m => m.jmbg.Equals(radnik.jmbg));
+
+                if (sviVozaci.Contains(vozac))
+                {
+                    DeleteVozac(radnik);
+                    return;
+                }
+
+            
+                db.radniks.Attach(radnik);
+                db.radniks.Remove(radnik);
+                db.SaveChanges();
             }
-            else if (get.GetAllProdavac().Contains(get.GetProdavacByJmbg(jmbg)))
-            {
-                DeleteProdavac(jmbg);
-            }
-            else if (get.GetAllVozac().Contains(get.GetVozacByJmbg(jmbg)))
-            {
-                DeleteVozac(jmbg);
-            }
-        } 
+        }
         #endregion
 
         #region DeletePutnik

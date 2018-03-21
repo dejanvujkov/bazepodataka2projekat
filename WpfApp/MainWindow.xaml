@@ -23,9 +23,9 @@
             
         </DataGrid>
 
-        <Button Grid.Row="2" Grid.Column="0" Height="30" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">Remove</Button>
+        <Button Grid.Row="2" Grid.Column="0" Height="30" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" x:Name="BRemove" Click="BRemove_Click">Remove</Button>
         
-        <Button Grid.Row="2" Grid.Column="1" Height="30" Width="100" VerticalAlignment="Center" HorizontalAlignment="Center" >Update</Button>
+        <Button Grid.Row="2" Grid.Column="1" Height="30" Width="100" VerticalAlignment="Center" x:Name="BUpdate" HorizontalAlignment="Center" Click="BUpdate_Click">Update</Button>
         
         <Button Grid.Row="2" Grid.Column="1" Height="30" Width="100" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Click="AddButton_Click">Add</Button>
     </Grid>
