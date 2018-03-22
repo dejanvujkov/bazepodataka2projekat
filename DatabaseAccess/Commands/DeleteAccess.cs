@@ -20,7 +20,7 @@ namespace DatabaseAccess
         {
             using (var db = new AutobuskaStanicaEntities())
             {
-                var svePoseduje = get.GetAllPoseduje();
+                var svePoseduje = db.posedujes.ToList();
                 foreach (var v in svePoseduje)
                 {
                     if (v.autobuska_stanica_idstanice == stanica.idstanice)
@@ -64,10 +64,9 @@ namespace DatabaseAccess
                                 db.Entry(prodavac).State = System.Data.Entity.EntityState.Deleted;
                             }
                         }
+
+                        db.Entry(radnik).State = System.Data.Entity.EntityState.Deleted;
                     }
-
-                    db.Entry(radnik).State = System.Data.Entity.EntityState.Deleted;
-
                 }
 
                 db.Entry(stanica).State = System.Data.Entity.EntityState.Deleted;
@@ -147,7 +146,6 @@ namespace DatabaseAccess
                         stanica.posedujes.Remove(poseduje);
                     }
                 }
-                //TODO: Exception
                 db.Entry(poseduje).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
             }
@@ -157,10 +155,9 @@ namespace DatabaseAccess
         #region DeleteMehanicar
         public void DeleteMehanicar(radnik radnik)
         {
-            var mehanicar = get.GetMehanicarByJmbg(radnik.jmbg);
-
             using (var db = new AutobuskaStanicaEntities())
             {
+                var mehanicar = db.mehanicars.FirstOrDefault(m => m.jmbg.Equals(radnik.jmbg));
                 db.Entry(mehanicar).State = System.Data.Entity.EntityState.Deleted;
 
                 foreach (var poseduje in get.GetAllPoseduje())
@@ -196,10 +193,9 @@ namespace DatabaseAccess
         #region DeleteVozac
         public void DeleteVozac(radnik radnik)
         {
-            var vozac = get.GetVozacByJmbg(radnik.jmbg);
-
             using (var db = new AutobuskaStanicaEntities())
             {
+                var vozac = db.vozacs.FirstOrDefault(v => v.jmbg.Equals(radnik.jmbg));
 
                 foreach (var linije in db.vozna_linija.ToList()) //ukoliko je imao neku liniju, obrisi vozaca (njega) sa te linije
                 {

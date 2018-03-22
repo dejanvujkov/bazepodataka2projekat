@@ -28,5 +28,11 @@
         <Button Grid.Row="2" Grid.Column="1" Height="30" Width="100" VerticalAlignment="Center" x:Name="BUpdate" HorizontalAlignment="Center" Click="BUpdate_Click" Margin="150,0,0,0">Update</Button>
         
         <Button Grid.Row="2" Grid.Column="1" Height="30" Width="100" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Click="AddButton_Click">Add</Button>
+
+        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,50">Unesite id stanice:</Label>
+
+        <TextBox Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="25" Height="25" Margin="0,0,15,50" x:Name="TbBroj"></TextBox>
+
+        <Button Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" Margin="0,0,0,20" x:Name="BIzracunajBrojRadnika" Click="BIzracunajBrojRadnika_Click">Ukupno radnika</Button>
     </Grid>
 </Window>

@@ -118,5 +118,6 @@
     <Build Include="Schema objects\Schemas\dbo\Tables\Keys\PKVozac.sql" />
     <Build Include="Schema objects\Schemas\dbo\Tables\Keys\PKVozi.sql" />
     <Build Include="Schema objects\Schemas\dbo\Tables\Keys\PKVoznaLinija.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Programmability\Functions\get_radnik_count.sql" />
   </ItemGroup>
 </Project>

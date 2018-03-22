@@ -343,6 +343,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="get_radnik_count" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="idstanice" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="AutobuskaStanicaModelStoreContainer">
           <EntitySet Name="autobus" EntityType="Self.autobus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="autobuska_stanica" EntityType="Self.autobuska_stanica" Schema="dbo" store:Type="Tables" />

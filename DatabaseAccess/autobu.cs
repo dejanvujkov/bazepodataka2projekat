@@ -11,14 +11,13 @@ namespace DatabaseAccess
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-
+    
     public partial class autobu
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public autobu()
         {
-            this.posedujes = new ObservableCollection<poseduje>();
+            this.posedujes = new HashSet<poseduje>();
         }
     
         public string brtablica { get; set; }
@@ -27,6 +26,6 @@ namespace DatabaseAccess
         public string marka { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<poseduje> posedujes { get; set; }
+        public virtual ICollection<poseduje> posedujes { get; set; }
     }
 }

@@ -236,9 +236,25 @@ namespace WpfApp
             catch (Exception)
             {
                 MessageBox.Show("Doslo je do greske prilikom izmene polja", "Oops!", MessageBoxButton.OK, MessageBoxImage.Error);
-                throw;
             }
         }
         #endregion
+
+        private void BIzracunajBrojRadnika_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(TbBroj.Text))
+            {
+                MessageBox.Show("Niste uneli id stanice za koju hocete da izracunate ukupan broj radnika", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Error);
+                TbBroj.Focus();
+                return;
+            }
+
+            using(var db = new AutobuskaStanicaEntities())
+            {
+                //var broj = db.get_radnik_count[int.Parse(TbBroj.Text)];
+            }
+            //var rezultati = new RezultatiFunkcije(int.Parse(TbBroj.Text), broj);
+            //DataGrid.ItemSource = rezultati;
+        }
     }
 }
