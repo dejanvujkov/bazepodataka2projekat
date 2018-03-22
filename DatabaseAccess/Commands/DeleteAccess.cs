@@ -28,15 +28,48 @@ namespace DatabaseAccess
                         db.Entry(v).State = System.Data.Entity.EntityState.Deleted;
                     }
                 }
+                var sviMehanicari = db.mehanicars.ToList();
+                var sviVozaci = db.vozacs.ToList();
+                var sviProdavci = db.prodavacs.ToList();
 
-                var sviRadnici = get.GetAllRadnik();
-                foreach(var radnik in sviRadnici)
+
+                var sviRadnici = db.radniks.ToList();
+                foreach (var radnik in sviRadnici)
                 {
                     if (radnik.autobuska_stanica_idstanice == stanica.idstanice)
                     {
-                        DeleteRadnik(radnik);
+                        //kroz sve mehanicare
+                        foreach(var mehanicar in sviMehanicari)
+                        {
+                            if(mehanicar.jmbg.Equals(radnik.jmbg))
+                            {
+                                db.Entry(mehanicar).State = System.Data.Entity.EntityState.Deleted;
+                            }
+                        }
+
+                        //kroz sve vozace
+                        foreach(var vozac in sviVozaci)
+                        {
+                            if(vozac.jmbg.Equals(radnik.jmbg))
+                            {
+                                db.Entry(vozac).State = System.Data.Entity.EntityState.Deleted;
+                            }
+                        }
+
+                        //kroz sve prodavce
+                        foreach(var prodavac in sviProdavci)
+                        {
+                            if(prodavac.jmbg.Equals(radnik.jmbg))
+                            {
+                                db.Entry(prodavac).State = System.Data.Entity.EntityState.Deleted;
+                            }
+                        }
                     }
+
+                    db.Entry(radnik).State = System.Data.Entity.EntityState.Deleted;
+
                 }
+
                 db.Entry(stanica).State = System.Data.Entity.EntityState.Deleted;
 
                 db.SaveChanges();
