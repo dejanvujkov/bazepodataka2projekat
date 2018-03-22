@@ -25,8 +25,7 @@ namespace DatabaseAccess
                 {
                     if (v.autobuska_stanica_idstanice == stanica.idstanice)
                     {
-                        db.posedujes.Attach(v);
-                        db.posedujes.Remove(v);
+                        db.Entry(v).State = System.Data.Entity.EntityState.Deleted;
                     }
                 }
 
@@ -38,8 +37,8 @@ namespace DatabaseAccess
                         DeleteRadnik(radnik);
                     }
                 }
-                db.autobuska_stanica.Attach(stanica);
-                db.autobuska_stanica.Remove(stanica);
+                db.Entry(stanica).State = System.Data.Entity.EntityState.Deleted;
+
                 db.SaveChanges();
             }
         } 
@@ -58,20 +57,17 @@ namespace DatabaseAccess
                     {
                         if (linija.posedujes == poseduje)
                         {
-                            db.vozna_linija.Attach(linija);
-                            db.vozna_linija.Remove(linija);
+                            db.Entry(linija).State = System.Data.Entity.EntityState.Deleted;
                         }
                     }
                     if (poseduje.autobus_brtablica.Equals(autobus.brtablica))
                     {
-                        db.posedujes.Attach(poseduje);
-                        db.posedujes.Remove(poseduje);
+                        db.Entry(poseduje).State = System.Data.Entity.EntityState.Deleted;
                     }
 
                 }
 
-                db.autobus.Attach(autobus);
-                db.autobus.Remove(autobus);
+                db.Entry(autobus).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
             }
         } 
@@ -119,8 +115,7 @@ namespace DatabaseAccess
                     }
                 }
                 //TODO: Exception
-                db.posedujes.Attach(poseduje);
-                db.posedujes.Remove(poseduje);
+                db.Entry(poseduje).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
             }
         } 
@@ -133,8 +128,8 @@ namespace DatabaseAccess
 
             using (var db = new AutobuskaStanicaEntities())
             {
-                db.mehanicars.Attach(mehanicar);
-                db.mehanicars.Remove(mehanicar);
+                db.Entry(mehanicar).State = System.Data.Entity.EntityState.Deleted;
+
                 foreach (var poseduje in get.GetAllPoseduje())
                 {
                     if (poseduje.mehanicars.Contains(mehanicar))
@@ -142,8 +137,7 @@ namespace DatabaseAccess
                         poseduje.mehanicars.Remove(mehanicar);
                     }
                 }
-                db.radniks.Attach(radnik);
-                db.radniks.Remove(radnik);
+                db.Entry(radnik).State = System.Data.Entity.EntityState.Deleted;
 
                 db.SaveChanges();
             }
@@ -157,11 +151,9 @@ namespace DatabaseAccess
 
             using (var db = new AutobuskaStanicaEntities())
             {
-                db.prodavacs.Attach(prodavac);
-                db.prodavacs.Remove(prodavac);
+                db.Entry(prodavac).State = System.Data.Entity.EntityState.Deleted;
 
-                db.radniks.Attach(radnik);
-                db.radniks.Remove(radnik);
+                db.Entry(radnik).State = System.Data.Entity.EntityState.Deleted;
 
                 db.SaveChanges();
             }
@@ -176,18 +168,16 @@ namespace DatabaseAccess
             using (var db = new AutobuskaStanicaEntities())
             {
 
-                foreach (var linije in get.GetAllVoznaLinija()) //ukoliko je imao neku liniju, obrisi vozaca (njega) sa te linije
+                foreach (var linije in db.vozna_linija.ToList()) //ukoliko je imao neku liniju, obrisi vozaca (njega) sa te linije
                 {
                     if (linije.vozacs.Contains(vozac))
                     {
                         linije.vozacs.Remove(vozac);
                     }
                 }
-                db.vozacs.Attach(vozac);
-                db.vozacs.Remove(vozac); //obrisi ga iz tabele vozac
-                
-                db.radniks.Attach(radnik);
-                db.radniks.Remove(radnik); //obrisi ga iz tabele radnik
+                db.Entry(vozac).State = System.Data.Entity.EntityState.Deleted;
+
+                db.Entry(radnik).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
             }
         } 
@@ -225,9 +215,8 @@ namespace DatabaseAccess
                     return;
                 }
 
-            
-                db.radniks.Attach(radnik);
-                db.radniks.Remove(radnik);
+
+                db.Entry(radnik).State = System.Data.Entity.EntityState.Deleted;
                 db.SaveChanges();
             }
         }

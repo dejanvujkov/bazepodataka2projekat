@@ -55,15 +55,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddAccess.cs" />
+    <Compile Include="Commands\AddAccess.cs" />
     <Compile Include="autobu.cs">
       <DependentUpon>StanicaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="autobuska_stanica.cs">
       <DependentUpon>StanicaModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DeleteAccess.cs" />
-    <Compile Include="GetAccess.cs" />
+    <Compile Include="Commands\DeleteAccess.cs" />
+    <Compile Include="Commands\GetAccess.cs" />
     <Compile Include="karta.cs">
       <DependentUpon>StanicaModel.tt</DependentUpon>
     </Compile>
@@ -101,7 +101,7 @@
     <Compile Include="tip_karte.cs">
       <DependentUpon>StanicaModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="UpdateAccess.cs" />
+    <Compile Include="Commands\UpdateAccess.cs" />
     <Compile Include="vozac.cs">
       <DependentUpon>StanicaModel.tt</DependentUpon>
     </Compile>

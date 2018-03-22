@@ -43,7 +43,7 @@ namespace WpfApp
         {
             CBTabela.Items.Add("Autobuska stanica");
             CBTabela.Items.Add("Autobus");
-            CBTabela.Items.Add("Poseduje");
+            CBTabela.Items.Add("Vozac");
             CBTabela.Items.Add("Radnik");
             CBTabela.Items.Add("Prodavac");
         }
@@ -60,8 +60,8 @@ namespace WpfApp
                 case "Autobus":
                     DataGrid.ItemsSource = get.GetAllAutobus();
                     break;
-                case "Poseduje":
-                    DataGrid.ItemsSource = get.GetAllPoseduje();
+                case "Vozac":
+                    DataGrid.ItemsSource = get.GetAllVozac();
                     break;
                 case "Radnik":
                     DataGrid.ItemsSource = get.GetAllRadnik();
@@ -119,12 +119,12 @@ namespace WpfApp
                         MessageBox.Show("Autobus sa takvim idom vec postoji, izaberite drugi", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     break;
-                case "Poseduje":
+                case "Vozac":
 
-                    var poseduje = (poseduje)DataGrid.SelectedItem;
+                    var vozac = (vozac)DataGrid.SelectedItem;
                     try
                     {
-                        add.AddPoseduje(poseduje.autobus_brtablica, poseduje.autobuska_stanica_idstanice);
+                        add.AddVozac(vozac.jmbg, vozac.brojvoznihlinija);
                         MessageBox.Show("Dodato!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     catch (NullReferenceException)
@@ -197,9 +197,18 @@ namespace WpfApp
                         MessageBox.Show("Greska prilikom brisanja autobusa", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     break;
-                case "Poseduje":
-                    var poseduje = (poseduje)DataGrid.SelectedItem;
-                    delete.DeletePoseduje(poseduje);
+                case "Vozac":
+                    try
+                    {
+                        var vozac = (vozac)DataGrid.SelectedItem;
+                        delete.DeleteVozac(get.GetRadnikByJmbg(vozac.jmbg));
+                        MessageBox.Show("Obrisano!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
+                        break;
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Greska prilikom brisanja vozaca", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                     break;
                 case "Radnik":
                     try
@@ -255,11 +264,19 @@ namespace WpfApp
                     }
                     break;
 
-                case "Poseduje":
-                    var poseduje = (poseduje)DataGrid.SelectedItem;
-                    //TODO
+                case "Vozac":
+                    try
+                    {
+                        var vozac = (vozac)DataGrid.SelectedItem;
+                        update.UpdateVozac(vozac.jmbg, vozac.brojvoznihlinija);
+                        MessageBox.Show("Promenjeno!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
+                        break;
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Greska prilikom menjanja vozaca", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                     break;
-
                 case "Radnik":
                     try
                     {
