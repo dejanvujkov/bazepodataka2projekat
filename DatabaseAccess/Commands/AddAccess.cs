@@ -11,7 +11,7 @@ namespace DatabaseAccess
 
         public AddAccess() { }
 
-        public void AddAutobus(string brtablica, int brmesta, string ispravan, string marka)
+        public void AddAutobus(string brtablica, int brmesta, string ispravan, string marka, int kilometri)
         {
             using (var db = new AutobuskaStanicaEntities())
             {
@@ -20,7 +20,8 @@ namespace DatabaseAccess
                     brtablica = brtablica,
                     brojmesta = brmesta,
                     ispravan = ispravan,
-                    marka = marka
+                    marka = marka,
+                    kilometri = kilometri
                 };
 
                 db.autobus.Add(autobu);

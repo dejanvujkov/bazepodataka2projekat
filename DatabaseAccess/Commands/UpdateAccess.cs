@@ -15,7 +15,7 @@ namespace DatabaseAccess
             get = new GetAccess();
         }
 
-        public void UpdateAutobus(string brojtablica, int brojmesta, string ispravan, string marka)
+        public void UpdateAutobus(string brojtablica, int brojmesta, string ispravan, string marka, int kilometri)
         {
             var autobus = get.GetAutobusById(brojtablica);
 
@@ -32,6 +32,10 @@ namespace DatabaseAccess
                 if (autobus.marka != marka)
                 {
                     autobus.marka = marka;
+                }
+                if(autobus.kilometri != kilometri)
+                {
+                    autobus.kilometri = kilometri;
                 }
                 
                 db.Entry(autobus).State = System.Data.Entity.EntityState.Modified;

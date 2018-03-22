@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AutobuskaStanicaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AutobuskaStanicaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="autobus">
           <Key>
             <PropertyRef Name="brtablica" />
@@ -13,6 +13,7 @@
           <Property Name="brojmesta" Type="int" Nullable="false" />
           <Property Name="ispravan" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="marka" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="kilometri" Type="int" />
         </EntityType>
         <EntityType Name="autobuska_stanica">
           <Key>
@@ -431,8 +432,7 @@
             <End Role="vozi" EntitySet="vozi" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AutobuskaStanicaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -445,6 +445,7 @@
           <Property Name="ispravan" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="marka" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="posedujes" Relationship="Self.poseduje_autobus_fk" FromRole="autobus" ToRole="poseduje" />
+          <Property Name="kilometri" Type="Int32" />
         </EntityType>
         <EntityType Name="autobuska_stanica">
           <Key>
@@ -754,6 +755,7 @@
           <EntitySetMapping Name="autobus">
             <EntityTypeMapping TypeName="AutobuskaStanicaModel.autobu">
               <MappingFragment StoreEntitySet="autobus">
+                <ScalarProperty Name="kilometri" ColumnName="kilometri" />
                 <ScalarProperty Name="brtablica" ColumnName="brtablica" />
                 <ScalarProperty Name="brojmesta" ColumnName="brojmesta" />
                 <ScalarProperty Name="ispravan" ColumnName="ispravan" />

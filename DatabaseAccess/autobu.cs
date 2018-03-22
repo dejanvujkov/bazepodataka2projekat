@@ -24,6 +24,7 @@ namespace DatabaseAccess
         public int brojmesta { get; set; }
         public string ispravan { get; set; }
         public string marka { get; set; }
+        public Nullable<int> kilometri { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<poseduje> posedujes { get; set; }

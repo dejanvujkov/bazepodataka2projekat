@@ -92,7 +92,7 @@ namespace WpfApp
 
                     case "Autobus":
                         var autobus = (autobu)DataGrid.SelectedItem;
-                        add.AddAutobus(autobus.brtablica, autobus.brojmesta, autobus.ispravan, autobus.marka);
+                        add.AddAutobus(autobus.brtablica, autobus.brojmesta, autobus.ispravan, autobus.marka, autobus.kilometri?? default(int));
                         MessageBox.Show("Dodato!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
                         DataGrid.ItemsSource = get.GetAllAutobus();
                         break;
@@ -203,7 +203,7 @@ namespace WpfApp
 
                     case "Autobus":
                         var autobus = (autobu)DataGrid.SelectedItem;
-                        update.UpdateAutobus(autobus.brtablica, autobus.brojmesta, autobus.ispravan, autobus.marka);
+                        update.UpdateAutobus(autobus.brtablica, autobus.brojmesta, autobus.ispravan, autobus.marka, autobus.kilometri ?? default(int));
                         MessageBox.Show("Promenjeno!", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
                         DataGrid.ItemsSource = get.GetAllAutobus();
                         break;
