@@ -120,5 +120,6 @@
     <Build Include="Schema objects\Schemas\dbo\Tables\Keys\PKVoznaLinija.sql" />
     <Build Include="Schema objects\Schemas\dbo\Programmability\Functions\get_radnik_count.sql" />
     <Build Include="Schema objects\Schemas\dbo\Tables\Triggers\insert_autobus_trigger.sql" />
+    <Build Include="Schema objects\Schemas\dbo\Tables\Indexes\index_radnik_ime.sql" />
   </ItemGroup>
 </Project>
